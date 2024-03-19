@@ -41,26 +41,19 @@ function pedirTipoDeProducto() {
 pedirTipoDeProducto();
 
 let cantidadProducto = {};
-
 function pedirCantidadProducto() {
-    for (let opcion in opcionesProducto) {
-        let cantidad = prompt("¿Cuántos Productos de " + opcionesProducto[opcion].nombre + " desea?");
-        cantidad = parseInt(cantidad);
-        if (isNaN(cantidad)) {
-            alert("Lo siento, cantidad inválida. Por favor, vuelva a intentarlo.");
-            pedirCantidadProducto();
-            break;
-        } else {
-            cantidadProducto[opcion] = cantidad;
-        }
+    let cantidad = prompt("¿Cuántos Productos de " + opcionesProducto[tipoDeProducto].nombre + " desea?");
+    cantidad = parseInt(cantidad);
+    if (isNaN(cantidad)) {
+    alert("Lo siento, cantidad inválida. Por favor, vuelva a intentarlo.");
+    pedirCantidadProducto();
+    } else {
+    cantidadProducto[tipoDeProducto] = cantidad;
     }
 }
 
 pedirCantidadProducto();
 
-let precioTotal = 0;
-for (let opcion in opcionesProducto) {
-    precioTotal += opcionesProducto[opcion].precio * cantidadProducto[opcion];
-}
+let precioTotal = opcionesProducto[tipoDeProducto].precio * cantidadProducto[tipoDeProducto];
 
 alert("¡Gracias, " + nombreUsuario + "! El precio total de los Productos es de $" + precioTotal + " USD.");
